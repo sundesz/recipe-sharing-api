@@ -8,16 +8,17 @@ export async function GET(req: Request) {
     const url = new URL(req.url)
     const searchQuery = url.searchParams.get('q')
 
-    const where = searchQuery
-      ? {
-          title: {
-            contains: searchQuery,
-            mode: 'insensitive',
+    const recipes = searchQuery
+      ? await prisma.recipe.findMany({
+          where: {
+            title: {
+              contains: searchQuery,
+              mode: 'insensitive',
+            },
           },
-        }
-      : {}
+        })
+      : await prisma.recipe.findMany()
 
-    const recipes = await prisma.recipe.findMany({ where })
     return NextResponse.json(recipes)
   } catch (error) {
     console.log(error)
