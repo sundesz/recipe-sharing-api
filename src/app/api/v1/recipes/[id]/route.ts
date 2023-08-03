@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server'
 
 export async function GET(req: Request) {
   try {
-    // Get the value of the dynamic segment "id" from the URL
     const id = req.url.split('/').pop()
     const recipe = await prisma.recipe.findUnique({
       where: {
@@ -29,10 +28,7 @@ interface RequestBody {
 }
 
 export async function PUT(req: Request) {
-  // Get the value of the dynamic segment "id" from the URL
   const id = req.url.split('/').pop()
-
-  // const {title}: Partial<Todo> = await request.json()
 
   try {
     const { title, category, instruction, tags, ingredients }: RequestBody =
@@ -70,7 +66,6 @@ export async function PUT(req: Request) {
 
     return NextResponse.json(result)
   } catch (error) {
-    console.log(error)
     if (error instanceof PrismaClientKnownRequestError) {
       // Handling the duplicate title error
       if (error.code === 'P2002') {
@@ -94,7 +89,6 @@ export async function PUT(req: Request) {
 
 export async function DELETE(req: Request) {
   try {
-    // Get the value of the dynamic segment "id" from the URL
     const id = req.url.split('/').pop()
     const recipe = await prisma.recipe.delete({
       where: {
@@ -104,7 +98,6 @@ export async function DELETE(req: Request) {
 
     return new NextResponse(null, { status: 204 })
   } catch (error) {
-    console.log(error)
     if (
       error instanceof PrismaClientKnownRequestError &&
       error.code == 'P2025'

@@ -4,7 +4,6 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 
 export async function GET(req: Request) {
   try {
-    console.log(req.url)
     const url = new URL(req.url)
     const searchQuery = url.searchParams.get('q')
 
@@ -27,8 +26,6 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  // const {title}: Partial<Todo> = await request.json()
-
   try {
     const { title, category, instruction, tags, ingredients } = await req.json()
 
