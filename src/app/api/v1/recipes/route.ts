@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server'
 import prisma from '@api/prisma/client'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 
+/**
+ * Get method
+ */
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url)
@@ -25,6 +28,9 @@ export async function GET(req: Request) {
   }
 }
 
+/**
+ * Post method
+ */
 export async function POST(req: Request) {
   try {
     const { title, category, instruction, tags, ingredients } = await req.json()

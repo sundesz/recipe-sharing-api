@@ -2,6 +2,9 @@ import prisma from '@api/prisma/client'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 import { NextResponse } from 'next/server'
 
+/**
+ * Get method
+ */
 export async function GET(req: Request) {
   try {
     const id = req.url.split('/').pop()
@@ -27,6 +30,9 @@ interface RequestBody {
   ingredients?: string
 }
 
+/**
+ * Put method
+ */
 export async function PUT(req: Request) {
   const id = req.url.split('/').pop()
 
@@ -87,6 +93,9 @@ export async function PUT(req: Request) {
   }
 }
 
+/**
+ * Delete method
+ */
 export async function DELETE(req: Request) {
   try {
     const id = req.url.split('/').pop()
