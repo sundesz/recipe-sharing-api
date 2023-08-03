@@ -1,3 +1,5 @@
+# https://flaviocopes.com/prisma-fix-initialize-yet-vercel/
+
 generator client {
   provider = "prisma-client-js"
 }
